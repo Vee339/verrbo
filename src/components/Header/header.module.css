@@ -1,0 +1,45 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo a {
+  display: block;
+  text-decoration: none;
+}
+.logo a img {
+  width: 140px;
+  object-fit: cover;
+}
+.mainMenu {
+  display: flex;
+  list-style-type: none;
+  gap: 3rem;
+}
+.mainMenu a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  position: relative;
+}
+
+.mainMenu a::after,
+.mainMenu a::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: all 0.2s;
+}
+.mainMenu a::before {
+  left: 0;
+}
+.mainMenu a::after {
+  right: 0;
+}
+.mainMenu a:hover::after,
+.mainMenu a:hover::before {
+  width: 50%;
+}

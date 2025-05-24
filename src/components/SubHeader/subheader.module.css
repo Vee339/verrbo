@@ -1,0 +1,11 @@
+.subHeader {
+  list-style-type: none;
+  display: flex;
+}
+.subHeader a {
+  display: block;
+  border: 1px solid var(--tertiary-color);
+  padding: 1rem 4rem;
+  text-decoration: none;
+  color: var(--secondary-color);
+}
