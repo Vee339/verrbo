@@ -1,11 +1,16 @@
 .subHeader {
   list-style-type: none;
   display: flex;
+  border: 1px solid var(--primary-color);
 }
 .subHeader a {
   display: block;
-  border: 1px solid var(--tertiary-color);
+  border-right: 1px solid var(--primary-color);
   padding: 1rem 4rem;
   text-decoration: none;
   color: var(--secondary-color);
+  transition: all 0.2s;
+}
+.subHeader a:hover {
+  background: #9393931b;
 }
