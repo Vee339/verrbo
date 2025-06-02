@@ -1,0 +1,26 @@
+form {
+  margin: 1rem 0;
+}
+textarea {
+  width: 900px;
+  resize: vertical;
+  height: 280px;
+  margin-bottom: 1rem;
+  border: 3px solid grey;
+  padding: 1rem;
+  outline: none;
+  font-size: 1.2rem;
+  font-family: "Radio Canada", sans-serif;
+}
+textarea:focus {
+  border: 3px solid var(--primary-color);
+}
+.buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+/* .link {
+  color: var(--primary-color);
+} */

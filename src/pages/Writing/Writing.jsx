@@ -7,11 +7,12 @@ export default function Writing() {
         Describe the first memory of your childhood when you learned something.
       </h1>
       <form>
-        <textarea>Start writing here...</textarea>
-        <div className="buttons">
-          <button className="btn">Save as a draft</button>
+        <textarea placeholder="Start writing here..."></textarea>
+        <div className={styles.buttons}>
+          <button className="btn secondary">Save as a draft</button>
+          {/* <a href="">Save as draft</a> */}
           <button type="submit" className="btn">
-            Submit
+            Save
           </button>
         </div>
       </form>
