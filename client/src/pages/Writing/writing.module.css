@@ -24,3 +24,14 @@ textarea:focus {
 /* .link {
   color: var(--primary-color);
 } */
+.changeTopic {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.changeTopic span {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

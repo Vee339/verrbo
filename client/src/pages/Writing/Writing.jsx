@@ -1,3 +1,4 @@
+import { IoMdRefresh } from "react-icons/io";
 import styles from "./writing.module.css";
 
 export default function Writing() {
@@ -6,6 +7,12 @@ export default function Writing() {
       <h1>
         Describe the first memory of your childhood when you learned something.
       </h1>
+      <button className={`btn ${styles.changeTopic}`}>
+        <span>
+          <IoMdRefresh />
+        </span>
+        Change Topic
+      </button>
       <form>
         <textarea placeholder="Start writing here..."></textarea>
         <div className={styles.buttons}>
