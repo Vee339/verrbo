@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Files with passwords
-/.env
+*.env
