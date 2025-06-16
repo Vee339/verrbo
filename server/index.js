@@ -23,12 +23,9 @@ app.get("/api/writingtopic", async (req, res) => {
 });
 
 app.post("/api/adduserwriting", async (req, res) => {
-  /*
   const userId = "68463d32a52beee297cb0ce2";
-  const topicId = "6840d6a484dbb5b392cb0ce2";
-  const content =
-    "This is my first writing on the verrbo app. I love all of my writings. I want to improve my language learning abilities with this app. Till then have a nice day.";
-
+  const topicId = req.body.topic_id;
+  const content = req.body.writing_content;
   const submitted_at = new Date();
   const feedback = "Need some improvement in Grammar";
   await userWritingsDb.addUserWriting(
@@ -38,9 +35,8 @@ app.post("/api/adduserwriting", async (req, res) => {
     submitted_at,
     feedback
   );
-  */
-  // console.log("The writing has been submitted by the user.");
-  console.log(req.body);
+
+  console.log("The writing has been submitted by the user.");
 });
 
 app.listen(port, () => {

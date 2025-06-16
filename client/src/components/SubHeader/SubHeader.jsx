@@ -1,19 +1,20 @@
 import styles from "./subheader.module.css";
+import { Link } from "react-router-dom";
 
 export default function SubHeader() {
   return (
     <ul className={styles.subHeader}>
       <li>
-        <a href="">Listening</a>
+        <Link to="listening">Listening</Link>
       </li>
       <li>
-        <a href="">Writing</a>
+        <Link to="writing">Writing</Link>
       </li>
       <li>
-        <a href="">Speaking</a>
+        <Link to="speaking">Speaking</Link>
       </li>
       <li>
-        <a href="">Reading</a>
+        <Link to="reading">Reading</Link>
       </li>
     </ul>
   );
