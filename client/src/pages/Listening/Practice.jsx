@@ -1,8 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import YouTube from "react-youtube";
 import styles from "./listening.module.css";
+import { MdOutlineReplay10, MdOutlineForward10 } from "react-icons/md";
+import { GiNotebook } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 export default function Practice() {
+  const playerRef = useRef(null);
+
   const options = {
     height: "300",
     width: "520",
@@ -12,6 +17,17 @@ export default function Practice() {
       cc_load_policy: 3,
       controls: 0,
     },
+  };
+
+  const onReady = (event) => {
+    playerRef.current = event.target;
+  };
+
+  const seek = (seconds) => {
+    if (playerRef.current) {
+      const currentTime = playerRef.current.getCurrentTime();
+      playerRef.current.seekTo(currentTime + seconds, true);
+    }
   };
 
   const rawTranscript =
@@ -33,11 +49,6 @@ export default function Practice() {
     });
   }, []);
 
-  const transcriptArray = rawTranscript.toLowerCase().split("");
-  function removeAllSpaces(arr, elem) {
-    return arr.filter((element) => element != elem);
-  }
-
   // Function to handle the key press for the transcript
   const handleKey = (e) => {
     const typedKey = e.key.toLowerCase();
@@ -58,17 +69,33 @@ export default function Practice() {
       span.textContent = typedKey;
       span.style.backgroundColor = "red";
     }
+    if (typedKey === " ") {
+      e.target.value = "";
+    }
   };
 
   return (
     <main className={styles.listeningPractice}>
-      <h1>Practice your listening skills by typing the transcript alongside</h1>
+      <h1>
+        Practice your listening skills by typing the transcript alongside:
+      </h1>
       <p>Rules of the practice should be written here.</p>
-      <YouTube
-        videoId="WSUj3PRvzzg"
-        opts={options}
-        className={styles.youtubeVideo}
-      />
+      <div className={styles.videoPlayer}>
+        <YouTube
+          videoId="WSUj3PRvzzg"
+          opts={options}
+          onReady={onReady}
+          className={styles.youtubeVideo}
+        />
+        <div className={styles.controls}>
+          <button onClick={() => seek(-10)}>
+            <MdOutlineReplay10 />
+          </button>
+          <button onClick={() => seek(10)}>
+            <MdOutlineForward10 />
+          </button>
+        </div>
+      </div>
       <div className={styles.practicePlayground}>
         <div ref={transcriptRef} className={styles.transcriptText}></div>
         <input
@@ -78,6 +105,12 @@ export default function Practice() {
           onKeyDown={handleKey}
         />
       </div>
+      <button className={`btn ${styles.fullScript}`}>
+        <Link to={{ pathname: "transcript", state: { rawTranscript } }}>
+          <GiNotebook />
+          Load Full Transcript
+        </Link>
+      </button>
     </main>
   );
 }

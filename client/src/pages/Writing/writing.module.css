@@ -21,9 +21,6 @@ textarea:focus {
   justify-content: flex-end;
   align-items: center;
 }
-/* .link {
-  color: var(--primary-color);
-} */
 .changeTopic {
   display: flex;
   align-items: center;
