@@ -10,9 +10,6 @@ export default function Score() {
   const wrongWords = wrongWordsArray.length;
 
   // Calculations
-  console.log(userWords);
-  console.log(totalWords);
-  console.log(wrongWords);
   const correctWords = userWords - wrongWords;
   const score = ((correctWords / totalWords) * 100).toFixed(2);
   return (
