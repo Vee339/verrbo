@@ -1,6 +1,7 @@
 import Header from "./components/Header/Header";
 import SubHeader from "./components/SubHeader/SubHeader";
 import Writing from "./pages/Writing/Writing";
+import Listening from "./pages/Listening/Listening";
 import Practice from "./pages/Listening/Practice";
 import Transcript from "./pages/Listening/Transcript";
 import Score from "./pages/Listening/Score";
@@ -15,6 +16,7 @@ function App() {
         <SubHeader />
         <Routes>
           <Route path="writing" element={<Writing />} />
+          <Route path="listening" element={<Listening />} />
           <Route path="listening/practice" element={<Practice />} />
           <Route
             path="listening/practice/transcript"

@@ -6,6 +6,7 @@ dotenv.config();
 
 const writingTopicsDb = require("./modules/writing_topics/db");
 const userWritingsDb = require("./modules/user_writings/db");
+const listeningVideosDb = require("./modules/listening_videos/db");
 
 const app = express();
 const port = process.env.PORT || "8888";
@@ -35,8 +36,11 @@ app.post("/api/adduserwriting", async (req, res) => {
     submitted_at,
     feedback
   );
+});
 
-  console.log("The writing has been submitted by the user.");
+app.get("/api/listeningvideos", async (req, res) => {
+  const listeningVideos = await listeningVideosDb.getYouTubeVideos();
+  res.json(listeningVideos);
 });
 
 app.listen(port, () => {

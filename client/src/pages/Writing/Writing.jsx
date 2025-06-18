@@ -17,13 +17,11 @@ export default function Writing() {
       }
 
       const retrievedTopic = await response.json();
-      // setTopic(retrievedTopic.topic);
       setTopic({
         topicId: retrievedTopic._id,
         question: retrievedTopic.topic,
         level: retrievedTopic.level,
       });
-      console.log(topic.topicId);
     } catch (err) {
       console.log("Failed to fetch writing topic:", err);
     }

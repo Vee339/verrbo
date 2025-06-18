@@ -93,7 +93,13 @@ export default function Practice() {
       <h1>
         Practice your listening skills by typing the transcript alongside:
       </h1>
-      <p>Rules of the practice should be written here.</p>
+      <p>
+        Type the words that you hear below the video in the input box. Pause the
+        video whenever you need to. You can also replay the video and skip.
+        After completing transcript, click on the submit button, and check your
+        score. You can also check the full script from the button at bottom, but
+        it is recommended that you first try it yourself.
+      </p>
       <div className={styles.videoPlayer}>
         <YouTube
           videoId="WSUj3PRvzzg"
