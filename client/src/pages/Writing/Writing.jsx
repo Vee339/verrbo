@@ -43,7 +43,6 @@ export default function Writing() {
         ></textarea>
         <div className={styles.buttons}>
           <button className="btn secondary">Save as a draft</button>
-          {/* <a href="">Save as draft</a> */}
           <button type="submit" className="btn">
             Save
           </button>

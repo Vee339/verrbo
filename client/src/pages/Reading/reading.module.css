@@ -1,0 +1,119 @@
+/* Styles for reading homepage */
+.readingOptions {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  justify-content: space-between;
+  row-gap: 2rem;
+  margin-top: 2.5rem;
+}
+.readingOption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  width: 45%;
+  height: 70px;
+  border-radius: 15px;
+  background: var(--accent-color);
+  font-size: 1.3rem;
+  transition: all 0.3s;
+}
+.readingOption:hover {
+  background: #86aca5;
+}
+
+/* Styles for stories List */
+.storiesList {
+  list-style-type: none;
+  display: flex;
+  gap: 4rem 2.5rem;
+  flex-wrap: wrap;
+}
+.storyCard {
+  text-decoration: none;
+  color: black;
+  display: block;
+  border: 2px solid var(--tertiary-color);
+  position: relative;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 220px;
+  width: 320px;
+  transition: all 0.3s;
+}
+.storyCard:hover {
+  transform: scale(1.1);
+}
+.storyTitle {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid var(--tertiary-color);
+  background: white;
+  width: 70%;
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  text-align: center;
+}
+.storyImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Styles for Story page */
+.storiesContainer {
+  display: flex;
+}
+.storyContent {
+  padding: 1rem 4rem 0 1rem;
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+  text-align: center;
+}
+.contentImage {
+  width: 640px;
+  height: 427px;
+  object-fit: cover;
+  outline: 4px solid var(--tertiary-color);
+  outline-offset: 10px;
+}
+
+/* Styles for Reading Articles page */
+.articlesList {
+  margin-top: 2rem;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+  width: 70%;
+}
+.article {
+  width: 60%;
+  transition: all 0.3s;
+}
+.article:nth-child(2n) {
+  align-self: flex-end;
+}
+.article:hover {
+  transform: scale(1.1);
+}
+.articleCard {
+  background: var(--tertiary-color);
+  text-decoration: none;
+  color: black;
+}
+article {
+  border-bottom: 1px solid gray;
+  margin-bottom: 1.2rem;
+}
+article h1 {
+  font-size: 2.5rem;
+}
+article p {
+  font-size: 1.2rem;
+}

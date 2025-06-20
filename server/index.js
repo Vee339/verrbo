@@ -7,6 +7,8 @@ dotenv.config();
 const writingTopicsDb = require("./modules/writing_topics/db");
 const userWritingsDb = require("./modules/user_writings/db");
 const listeningVideosDb = require("./modules/listening_videos/db");
+const shortStoriesDb = require("./modules/short_stories/db");
+const readingArticlesDb = require("./modules/reading_articles/db");
 
 const app = express();
 const port = process.env.PORT || "8888";
@@ -41,6 +43,16 @@ app.post("/api/adduserwriting", async (req, res) => {
 app.get("/api/listeningvideos", async (req, res) => {
   const listeningVideos = await listeningVideosDb.getYouTubeVideos();
   res.json(listeningVideos);
+});
+
+app.get("/api/shortstories", async (req, res) => {
+  const shortStories = await shortStoriesDb.getShortStories();
+  res.json(shortStories);
+});
+
+app.get("/api/readingarticles", async (req, res) => {
+  const readingArticles = await readingArticlesDb.getReadingArticles();
+  res.json(readingArticles);
 });
 
 app.listen(port, () => {

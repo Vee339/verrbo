@@ -1,0 +1,22 @@
+.sidebar {
+  width: 230px;
+  min-height: calc(100vh - 130px);
+}
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  background: var(--tertiary-color);
+  height: 100%;
+}
+.sidebar ul li a {
+  display: block;
+  text-decoration: none;
+  color: var(--primary-color);
+  padding: 1rem;
+  border-bottom: 1px solid grey;
+  background: var(--tertiary-color);
+  transition: all 0.3s;
+}
+.sidebar ul li a:hover {
+  background: var(--secondary-color);
+}

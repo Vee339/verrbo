@@ -1,0 +1,26 @@
+header {
+  display: flex;
+  border-bottom: 3px solid var(--tertiary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary-color);
+  padding: 0 5rem;
+}
+.logoImage {
+  width: 80px;
+}
+.mainNav ul {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  list-style-type: none;
+}
+.mainNav ul li a {
+  text-decoration: none;
+  color: var(--secondary-color);
+  transition: all 0.3s;
+}
+.mainNav ul li a:hover {
+  color: var(--tertiary-color);
+}

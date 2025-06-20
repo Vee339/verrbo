@@ -1,23 +1,25 @@
-import styles from "./listening.module.css";
 import { useEffect, useState } from "react";
+import styles from "./listeningvideos.module.css";
+import { IoAddSharp } from "react-icons/io5";
+import { CiEdit } from "react-icons/ci";
+import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const apiKey = `AIzaSyBGMQBzySjWxCOzdtVLmE6b6Lv_EogFwnE`;
 
-export default function Listening() {
-  const [retrievedVideos, setRetrievedVideos] = useState([]);
+export default function ListeningVideos() {
+  const [videosList, setVideosList] = useState([]);
   const [videoInfo, setVideoInfo] = useState({});
 
   useEffect(() => {
-    async function retrieveVideos() {
+    async function getVideos() {
       try {
-        // fetch all the videoIDs from the Database
         const response = await fetch("/api/listeningvideos");
         if (!response.ok) {
           throw new Error(`HTTP Error! status: ${response.status}`);
         }
         const data = await response.json();
-        setRetrievedVideos(data);
+        setVideosList(data);
 
         // fetch information of all the videos with the help of YouTube IDs
         const videoInfos = await Promise.all(
@@ -36,35 +38,39 @@ export default function Listening() {
         });
         setVideoInfo(infoMap);
       } catch (err) {
-        console.log(`Failed to fetch writing topic: ${err}`);
+        console.log(`Could not retrieve the videos list: ${err}`);
       }
     }
-    retrieveVideos();
+    getVideos();
   }, []);
-
   return (
-    <main>
-      <h1>Videos to Train your Ears to the Language </h1>
-      <div className={styles.videosContainer}>
-        {retrievedVideos.map((video) => {
+    <>
+      <h1>YouTube Videos Database: </h1>
+      <Link to="add" className="actionBtn add">
+        <IoAddSharp />
+        Add New
+      </Link>
+      <ul className={styles.videosContainer}>
+        {videosList.map((video) => {
           const info = videoInfo[video.youtubeId];
           return (
-            <Link
-              to="practice"
-              state={{ videoId: video.youtubeId, transcript: video.transcript }}
-              key={video.youtubeId}
-              className={styles.videoCard}
-            >
-              <p className={styles.videoTitle}>{info?.snippet?.title}</p>
-              <img
-                className={styles.videoThumbnail}
-                src={info?.snippet?.thumbnails?.medium?.url}
-                alt=""
-              />
-            </Link>
+            <li key={video.youtubeId}>
+              <h3 className={styles.videoTitle}>
+                Video Title: {info?.snippet?.title}
+              </h3>
+              <p className={styles.videoId}>YouTube Id: {video.youtubeId}</p>
+              <div className="buttons">
+                <Link to="edit" className="actionBtn edit">
+                  <CiEdit />
+                </Link>
+                <Link to="delete" className="actionBtn delete">
+                  <AiOutlineDelete />
+                </Link>
+              </div>
+            </li>
           );
         })}
-      </div>
-    </main>
+      </ul>
+    </>
   );
 }
