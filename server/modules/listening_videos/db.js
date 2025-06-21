@@ -27,6 +27,42 @@ async function getYouTubeVideos() {
   return youtubeVideos;
 }
 
+async function addYouTubeVideo(youtubeId, level, transcript) {
+  await connect();
+  const currentDate = Date();
+  const video = new ListeningVideo({
+    youtubeId: youtubeId,
+    level: level,
+    transcript: transcript,
+    added_at: currentDate,
+  });
+  await video.save();
+}
+
+async function deleteYouTubeVideo(id) {
+  await connect();
+  await ListeningVideo.deleteOne({ youtubeId: id });
+}
+
+async function updateYouTubeVideo(youtubeId, level, transcript) {
+  await connect();
+
+  const result = await ListeningVideo.updateOne(
+    { youtubeId: youtubeId },
+    { level: level, transcript: transcript },
+    { new: true }
+  );
+
+  if (!result) {
+    throw new Error("Video not found");
+  }
+
+  return result;
+}
+
 module.exports = {
   getYouTubeVideos,
+  addYouTubeVideo,
+  updateYouTubeVideo,
+  deleteYouTubeVideo,
 };

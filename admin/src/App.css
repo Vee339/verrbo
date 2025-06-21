@@ -107,6 +107,9 @@ select:focus {
   border: none;
   outline: 3px solid var(--tertiary-color);
 }
+textarea {
+  resize: vertical;
+}
 input.actionBtn.add {
   width: 100%;
   margin-left: 0;

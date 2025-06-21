@@ -4,9 +4,11 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const writingTopicsDb = require("./modules/writing_topics/db");
+const videosRouter = require("./modules/listening_videos/router");
+const writingRouter = require("./modules/writing_topics/router");
+const speakingRouter = require("./modules/speaking_topics/router");
+
 const userWritingsDb = require("./modules/user_writings/db");
-const listeningVideosDb = require("./modules/listening_videos/db");
 const shortStoriesDb = require("./modules/short_stories/db");
 const readingArticlesDb = require("./modules/reading_articles/db");
 
@@ -16,13 +18,12 @@ const port = process.env.PORT || "8888";
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use("/", videosRouter);
+app.use("/", writingRouter);
+app.use("/", speakingRouter);
+
 app.get("/", async (req, res) => {
   res.send("This is the test command.");
-});
-
-app.get("/api/writingtopic", async (req, res) => {
-  const writingTopic = await writingTopicsDb.getWritingTopic();
-  res.json(writingTopic);
 });
 
 app.post("/api/adduserwriting", async (req, res) => {
@@ -38,11 +39,6 @@ app.post("/api/adduserwriting", async (req, res) => {
     submitted_at,
     feedback
   );
-});
-
-app.get("/api/listeningvideos", async (req, res) => {
-  const listeningVideos = await listeningVideosDb.getYouTubeVideos();
-  res.json(listeningVideos);
 });
 
 app.get("/api/shortstories", async (req, res) => {
