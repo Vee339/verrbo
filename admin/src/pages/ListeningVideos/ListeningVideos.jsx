@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import styles from "./listeningvideos.module.css";
 import { IoAddSharp } from "react-icons/io5";
 import { CiEdit } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -50,20 +49,32 @@ export default function ListeningVideos() {
         <IoAddSharp />
         Add New
       </Link>
-      <ul className={styles.videosContainer}>
+      <ul className="contentContainer">
         {videosList.map((video) => {
           const info = videoInfo[video.youtubeId];
           return (
             <li key={video.youtubeId}>
-              <h3 className={styles.videoTitle}>
+              <h3 className="videoTitle">
                 Video Title: {info?.snippet?.title}
               </h3>
-              <p className={styles.videoId}>YouTube Id: {video.youtubeId}</p>
+              <p className="videoId">YouTube Id: {video.youtubeId}</p>
               <div className="buttons">
-                <Link to="edit" className="actionBtn edit">
+                <Link
+                  to="edit"
+                  state={{
+                    youtubeId: video.youtubeId,
+                    level: video.level,
+                    transcript: video.transcript,
+                  }}
+                  className="actionBtn edit"
+                >
                   <CiEdit />
                 </Link>
-                <Link to="delete" className="actionBtn delete">
+                <Link
+                  to="delete"
+                  state={{ youtubeId: video.youtubeId }}
+                  className="actionBtn delete"
+                >
                   <AiOutlineDelete />
                 </Link>
               </div>

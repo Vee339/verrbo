@@ -118,3 +118,49 @@ input.actionBtn.add {
 label {
   font-size: 1.4rem;
 }
+
+/* Styles for Delete Page */
+.notice {
+  color: var(--tertiary-color);
+  margin-top: 7px;
+}
+.buttons.deletePage {
+  justify-content: flex-start;
+  margin-top: 2rem;
+}
+.actionBtn.cancel,
+.actionBtn.confirmDelete {
+  padding: 1rem 1.8rem;
+}
+.actionBtn.confirmDelete {
+  background: rgb(211, 17, 17);
+  border: none;
+  outline: none;
+  color: var(--primary-color);
+  transition: all 0.3s;
+}
+.actionBtn.confirmDelete:hover {
+  background: rgb(174, 15, 15);
+}
+.actionBtn.cancel {
+  border: 2px solid var(--secondary-color);
+  transition: all 0.3s;
+}
+.actionBtn.cancel:hover {
+  background: var(--accent-color);
+}
+.contentContainer {
+  padding: 3rem 2.5rem;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.contentContainer li {
+  border: 1px solid var(--secondary-color);
+  padding: 1rem 1.3rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}

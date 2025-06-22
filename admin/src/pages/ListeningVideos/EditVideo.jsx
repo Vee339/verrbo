@@ -1,53 +1,29 @@
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function AddVideo() {
+export default function EditVideo() {
+  let location = useLocation();
   const navigate = useNavigate();
-
-  const [videoUrl, setVideoUrl] = useState("");
-  const [youtubeId, setYoutubeId] = useState("");
-  const [level, setLevel] = useState("");
-  const [transcript, setTranscript] = useState("");
-
-  function extractYoutubeId(url) {
-    const regex =
-      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
-  }
-
-  const handleUrlChange = (e) => {
-    const url = e.target.value;
-    setVideoUrl(url);
-
-    const id = extractYoutubeId(url);
-
-    if (id) {
-      setYoutubeId(id);
-    } else {
-      setYoutubeId("");
-    }
-  };
+  const youtubeId = location.state.youtubeId;
+  const [level, setLevel] = useState(location.state.level);
+  const [transcript, setTranscript] = useState(location.state.transcript);
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     const videoData = { youtubeId, level, transcript };
     try {
-      const res = await fetch("/api/addyoutubevideo", {
-        method: "POST",
+      const res = await fetch("/api/updateyoutubevideo", {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(videoData),
       });
       if (res.ok) {
-        console.log("Video added successfully");
-        setVideoUrl("");
-        setYoutubeId("");
-        setLevel("");
-        setTranscript("");
+        console.log("Video updated successfully");
         navigate("/listeningvideos");
       } else {
-        console.log("Failed to add video");
+        console.log("Failed to update the video");
       }
     } catch (err) {
       console.log(err);
@@ -56,19 +32,9 @@ export default function AddVideo() {
 
   return (
     <>
-      <h1>Add a video that you think will help the learners</h1>
+      <h1>Edit the video: {youtubeId}</h1>
       <form onSubmit={handleSubmit}>
         <h2>Fill the data below:</h2>
-        <div className="inputBox">
-          <label htmlFor="">URL:</label>
-          <input
-            type="text"
-            value={videoUrl}
-            placeholder="Copy and Paste the link of the YouTube here"
-            onChange={handleUrlChange}
-            required
-          />
-        </div>
         <div className="inputBox">
           <label htmlFor="proficiencyLevel">CEFR Level:</label>
           <select
@@ -98,7 +64,7 @@ export default function AddVideo() {
             required
           ></textarea>
         </div>
-        <input type="submit" value="Submit" className="actionBtn add" />
+        <input type="submit" value="Save Changes" className="actionBtn add" />
       </form>
     </>
   );
