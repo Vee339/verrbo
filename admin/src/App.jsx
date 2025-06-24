@@ -1,7 +1,8 @@
-import Header from "./components/Header/Header";
-import Sidebar from "./components/Sidebar/Sidebar";
-import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainLayout from "./MainLayout";
+import LoginAdmin from "./pages/LoginAdmin/LoginAdmin";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Logout from "./pages/Logout/Logout";
 import Home from "./pages/Home/Home";
 import ListeningVideos from "./pages/ListeningVideos/ListeningVideos";
 import AddVideo from "./pages/ListeningVideos/AddVideo";
@@ -22,59 +23,194 @@ import DeleteReadingArticle from "./pages/ReadingArticles/DeleteReadingArticle";
 import ShortStories from "./pages/ShortStories/ShortStories";
 import AddShortStory from "./pages/ShortStories/AddShortStory";
 import EditShortStory from "./pages/ShortStories/EditShortStory";
+import DeleteShortStory from "./pages/ShortStories/DeleteShortStory";
 import "./App.css";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
-        <section className="content">
-          <Sidebar />
-          <main>
-            <Routes>
-              <Route path="" element={<Home />} />
-              <Route path="listeningvideos" element={<ListeningVideos />} />
-              <Route path="listeningvideos/add" element={<AddVideo />} />
-              <Route path="listeningvideos/edit" element={<EditVideo />} />
-              <Route path="listeningvideos/delete" element={<DeleteVideo />} />
-              <Route path="writingtopics" element={<WritingTopics />} />
-              <Route path="writingtopics/add" element={<AddWritingTopic />} />
-              <Route path="writingtopics/edit" element={<EditWritingTopic />} />
-              <Route
-                path="writingtopics/delete"
-                element={<DeleteWritingTopic />}
-              />
-              <Route path="speakingtopics" element={<SpeakingTopics />} />
-              <Route path="speakingtopics/add" element={<AddSpeakingTopic />} />
-              <Route
-                path="/speakingtopics/edit"
-                element={<EditSpeakingTopic />}
-              />
-              <Route
-                path="/speakingtopics/delete"
-                element={<DeleteSpeakingTopic />}
-              />
-              <Route path="/readingarticles" element={<ReadingArticles />} />
-              <Route
-                path="/readingarticles/add"
-                element={<AddReadingArticle />}
-              />
-              <Route
-                path="/readingarticles/edit"
-                element={<EditReadingArticle />}
-              />
-              <Route
-                path="/readingarticles/delete"
-                element={<DeleteReadingArticle />}
-              />
-              <Route path="/shortstories" element={<ShortStories />} />
-              <Route path="/shortstories/add" element={<AddShortStory />} />
-              <Route path="/shortstories/edit" element={<EditShortStory />} />
-            </Routes>
-          </main>
-        </section>
-        <Footer />
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route
+              path=""
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="listeningvideos"
+              element={
+                <ProtectedRoute>
+                  <ListeningVideos />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="listeningvideos/add"
+              element={
+                <ProtectedRoute>
+                  <AddVideo />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="listeningvideos/edit"
+              element={
+                <ProtectedRoute>
+                  <EditVideo />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="listeningvideos/delete"
+              element={
+                <ProtectedRoute>
+                  <DeleteVideo />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="writingtopics"
+              element={
+                <ProtectedRoute>
+                  <WritingTopics />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="writingtopics/add"
+              element={
+                <ProtectedRoute>
+                  <AddWritingTopic />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="writingtopics/edit"
+              element={
+                <ProtectedRoute>
+                  <EditWritingTopic />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="writingtopics/delete"
+              element={
+                <ProtectedRoute>
+                  <DeleteWritingTopic />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="speakingtopics"
+              element={
+                <ProtectedRoute>
+                  <SpeakingTopics />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="speakingtopics/add"
+              element={
+                <ProtectedRoute>
+                  <AddSpeakingTopic />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/speakingtopics/edit"
+              element={
+                <ProtectedRoute>
+                  <EditSpeakingTopic />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/speakingtopics/delete"
+              element={
+                <ProtectedRoute>
+                  <DeleteSpeakingTopic />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/readingarticles"
+              element={
+                <ProtectedRoute>
+                  <ReadingArticles />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/readingarticles/add"
+              element={
+                <ProtectedRoute>
+                  <AddReadingArticle />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/readingarticles/edit"
+              element={
+                <ProtectedRoute>
+                  <EditReadingArticle />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/readingarticles/delete"
+              element={
+                <ProtectedRoute>
+                  <DeleteReadingArticle />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/shortstories"
+              element={
+                <ProtectedRoute>
+                  <ShortStories />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/shortstories/add"
+              element={
+                <ProtectedRoute>
+                  <AddShortStory />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/shortstories/edit"
+              element={
+                <ProtectedRoute>
+                  <EditShortStory />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/shortstories/delete"
+              element={
+                <ProtectedRoute>
+                  <DeleteShortStory />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
+          <Route path="/admin/login" element={<LoginAdmin />} />
+          <Route
+            path="/admin/logout"
+            element={
+              <ProtectedRoute>
+                <Logout />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </>
   );

@@ -1,9 +1,11 @@
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
+const sessions = require("express-session");
 
 dotenv.config();
 
+const usersRouter = require("./modules/users/router");
 const videosRouter = require("./modules/listening_videos/router");
 const writingRouter = require("./modules/writing_topics/router");
 const speakingRouter = require("./modules/speaking_topics/router");
@@ -18,11 +20,21 @@ const port = process.env.PORT || "8888";
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(
+  sessions({
+    secret: process.env.SESSIONSECRET,
+    name: "verrboSessionId",
+    saveUninitialized: false,
+    resave: false,
+  })
+);
+
 app.use("/", videosRouter);
 app.use("/", writingRouter);
 app.use("/", speakingRouter);
 app.use("/", readingRouter);
 app.use("/", storiesRouter);
+app.use("/", usersRouter);
 
 app.get("/", async (req, res) => {
   res.send("This is the test command.");

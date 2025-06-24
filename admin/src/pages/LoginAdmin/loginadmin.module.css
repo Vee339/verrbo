@@ -1,0 +1,41 @@
+.mainContent {
+  /* width: 100vw;
+  height: 100vh; */
+  width: 500px;
+  height: 500px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.loginForm {
+  border: 2px solid rgb(181, 181, 181);
+  border-radius: 15px;
+  width: 100%;
+  padding: 3rem;
+}
+.loginBtn {
+  width: 100%;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 15px 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  font-size: 1.5rem;
+  font-family: "Roboto", sans-serif;
+}
+.usernameInput,
+.passwordInput {
+  font-family: "Roboto", sans-serif;
+}
+.usernameInput:focus,
+.passwordInput:focus {
+  outline: 3px solid var(--secondary-color);
+}
+.error {
+  color: red;
+}

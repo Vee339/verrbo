@@ -1,0 +1,58 @@
+.mainContent {
+  width: 400px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.registerHeading {
+  color: var(--primary-color);
+}
+.registerForm {
+  border: 2px solid rgb(175, 175, 175);
+  border-radius: 15px;
+  width: 100%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.registerBtn {
+  width: 100%;
+  background: var(--primary-color);
+  color: white;
+  padding: 15px 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  font-size: 1.5rem;
+}
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.formLabel {
+  font-size: 1.3rem;
+}
+.usernameInput,
+.passwordInput,
+.emailInput {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+.usernameInput:focus,
+.passwordInput:focus,
+.emailInput:focus {
+  outline: 3px solid var(--primary-color);
+  border: none;
+}
+.error {
+  color: red;
+}
+.loginLink {
+  text-align: center;
+}

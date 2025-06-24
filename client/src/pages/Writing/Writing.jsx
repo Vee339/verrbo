@@ -1,15 +1,15 @@
 import { IoMdRefresh } from "react-icons/io";
 import styles from "./writing.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Writing() {
-  const [topic, setTopic] = useState({
-    topicId: "68475961bf8a7e72a5cb0ce2",
-    question:
-      "Describe the first memory of your childhood when you learned something.",
-    level: "B1",
-  });
-  async function changeTopic() {
+  const [topic, setTopic] = useState(null);
+
+  useEffect(() => {
+    fetchTopic();
+  }, []);
+
+  async function fetchTopic() {
     try {
       const response = await fetch("/api/writingtopic");
       if (!response.ok) {
@@ -26,10 +26,13 @@ export default function Writing() {
       console.log("Failed to fetch writing topic:", err);
     }
   }
+  if (!topic) {
+    return <p>Loading....</p>;
+  }
   return (
     <main>
       <h1>{topic.question}</h1>
-      <button className={`btn ${styles.changeTopic}`} onClick={changeTopic}>
+      <button className={`btn ${styles.changeTopic}`} onClick={fetchTopic}>
         <span>
           <IoMdRefresh />
         </span>

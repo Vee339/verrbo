@@ -12,5 +12,6 @@
   transition: all 0.2s;
 }
 .subHeader a:hover {
-  background: #9393931b;
+  background: var(--tertiary-color);
+  color: white;
 }

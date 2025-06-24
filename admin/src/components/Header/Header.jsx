@@ -21,7 +21,7 @@ export default function Header() {
             <NavLink to="profile">Profile</NavLink>
           </li>
           <li>
-            <NavLink to="logout">Logout</NavLink>
+            <NavLink to="/admin/logout">Logout</NavLink>
           </li>
         </ul>
       </nav>
