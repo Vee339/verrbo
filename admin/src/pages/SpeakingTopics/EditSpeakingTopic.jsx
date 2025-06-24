@@ -20,11 +20,15 @@ export default function EditSpeakingTopic() {
     };
 
     try {
-      const res = await fetch("/api/updatespeakingtopic", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(topicData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/updatespeakingtopic`,
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(topicData),
+        }
+      );
       if (res.ok) {
         console.log("Topic has been successfully");
         setSpeakingTopic("");

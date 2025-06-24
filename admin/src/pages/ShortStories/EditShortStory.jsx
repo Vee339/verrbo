@@ -25,11 +25,15 @@ export default function EditShortStory() {
     };
 
     try {
-      const res = await fetch("/api/updateshortstory", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(storyData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/updateshortstory`,
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(storyData),
+        }
+      );
       if (res.ok) {
         console.log("Story has been updated successfully");
         navigate("/shortstories");

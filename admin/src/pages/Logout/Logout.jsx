@@ -7,9 +7,10 @@ export default function Logout() {
   useEffect(() => {
     async function logoutUser() {
       try {
-        const res = await fetch("/api/user/logout", {
-          method: "POST",
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/user/logout`,
+          { method: "POST", credentials: "include" }
+        );
 
         if (res.ok) {
           console.log("Logged out successfully");

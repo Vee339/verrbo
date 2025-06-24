@@ -29,7 +29,7 @@ import "./App.css";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/verrbo/admin">
         <Routes>
           <Route element={<MainLayout />}>
             <Route

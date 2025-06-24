@@ -10,7 +10,12 @@ export default function ShortStories() {
   useEffect(() => {
     async function getShortStories() {
       try {
-        const response = await fetch("/api/shortstories");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/shortstories`,
+          {
+            credentials: "include",
+          }
+        );
         if (!response.ok) {
           throw new Error(`HTTP Error! status: ${response.status}`);
         }

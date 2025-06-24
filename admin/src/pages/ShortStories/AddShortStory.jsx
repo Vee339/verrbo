@@ -20,11 +20,15 @@ export default function AddShortStory() {
     };
 
     try {
-      const res = await fetch("/api/addshortstory", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(storyData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/addshortstory`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(storyData),
+        }
+      );
       if (res.ok) {
         console.log("Story has been added successfully");
         setStoryTitle("");

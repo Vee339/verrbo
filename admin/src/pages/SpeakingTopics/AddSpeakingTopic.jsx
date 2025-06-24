@@ -16,11 +16,15 @@ export default function AddSpeakingTopic() {
     };
 
     try {
-      const res = await fetch("/api/addspeakingtopic", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(topicData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/addspeakingtopic`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(topicData),
+        }
+      );
       if (res.ok) {
         console.log("Topic added successfully");
         setSpeakingTopic("");

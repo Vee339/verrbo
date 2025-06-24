@@ -14,11 +14,15 @@ export default function EditVideo() {
 
     const videoData = { youtubeId, level, transcript };
     try {
-      const res = await fetch("/api/updateyoutubevideo", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(videoData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/updateyoutubevideo`,
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(videoData),
+        }
+      );
       if (res.ok) {
         console.log("Video updated successfully");
         navigate("/listeningvideos");

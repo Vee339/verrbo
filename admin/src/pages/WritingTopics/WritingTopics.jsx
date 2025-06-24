@@ -10,7 +10,12 @@ export default function WritingTopics() {
   useEffect(() => {
     async function getWritingTopics() {
       try {
-        const response = await fetch("/api/writingtopics");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/writingtopics`,
+          {
+            credentials: "include",
+          }
+        );
         if (!response.ok) {
           throw new Error(`HTTP Error! status: ${response.status}`);
         }

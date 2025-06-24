@@ -11,9 +11,15 @@ export default function DeleteReadingArticle() {
   async function handleDelete(e) {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/deletereadingarticle?id=${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/api/deletereadingarticle?id=${id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
       if (res.ok) {
         console.log("Article has been deleted successfully");
         navigate("/readingarticles");

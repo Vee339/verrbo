@@ -11,9 +11,13 @@ export default function DeleteWritingTopic() {
   async function handleDelete(e) {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/deletewritingtopic?id=${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/deletewritingtopic?id=${id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
       if (res.ok) {
         console.log("Topic has been deleted successfully");
         navigate("/writingtopics");

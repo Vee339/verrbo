@@ -11,9 +11,13 @@ export default function DeleteShortStory() {
   async function handleDelete(e) {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/deleteshortstory?id=${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/deleteshortstory?id=${id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
       if (res.ok) {
         console.log("Story has been deleted successfully");
         navigate("/shortstories");

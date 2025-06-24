@@ -20,11 +20,15 @@ export default function EditWritingTopic() {
     };
 
     try {
-      const res = await fetch("/api/updatewritingtopic", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(topicData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/updatewritingtopic`,
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(topicData),
+        }
+      );
       if (res.ok) {
         console.log("Topic has been successfully");
         setWritingTopic("");

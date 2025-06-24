@@ -10,7 +10,12 @@ export default function ReadingArticles() {
   useEffect(() => {
     async function getReadingArticles() {
       try {
-        const response = await fetch("/api/readingarticles");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/readingarticles`,
+          {
+            credentials: "include",
+          }
+        );
         if (!response.ok) {
           throw new Error(`HTTP Error! status: ${response.status}`);
         }

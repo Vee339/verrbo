@@ -12,9 +12,12 @@ export default function DeleteVideo() {
     e.preventDefault();
     try {
       const res = await fetch(
-        `/api/deleteyoutubevideo?youtubeId=${youtubeId}`,
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/api/deleteyoutubevideo?youtubeId=${youtubeId}`,
         {
           method: "DELETE",
+          credentials: "include",
         }
       );
       if (res.ok) {

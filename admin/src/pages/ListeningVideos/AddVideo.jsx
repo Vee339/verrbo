@@ -34,11 +34,15 @@ export default function AddVideo() {
 
     const videoData = { youtubeId, level, transcript };
     try {
-      const res = await fetch("/api/addyoutubevideo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(videoData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/addyoutubevideo`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(videoData),
+        }
+      );
       if (res.ok) {
         console.log("Video added successfully");
         setVideoUrl("");

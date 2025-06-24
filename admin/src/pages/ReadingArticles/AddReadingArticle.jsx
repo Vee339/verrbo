@@ -26,11 +26,15 @@ export default function AddReadingArticle() {
     };
 
     try {
-      const res = await fetch("/api/addreadingarticle", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(articleData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/addreadingarticle`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(articleData),
+        }
+      );
       if (res.ok) {
         console.log("Article added successfully");
         setArticleTitle("");

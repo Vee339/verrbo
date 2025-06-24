@@ -4,7 +4,7 @@ import { CiEdit } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-const apiKey = `AIzaSyBGMQBzySjWxCOzdtVLmE6b6Lv_EogFwnE`;
+const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
 
 export default function ListeningVideos() {
   const [videosList, setVideosList] = useState([]);
@@ -13,7 +13,12 @@ export default function ListeningVideos() {
   useEffect(() => {
     async function getVideos() {
       try {
-        const response = await fetch("/api/listeningvideos");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/listeningvideos`,
+          {
+            credentials: "include",
+          }
+        );
         if (!response.ok) {
           throw new Error(`HTTP Error! status: ${response.status}`);
         }

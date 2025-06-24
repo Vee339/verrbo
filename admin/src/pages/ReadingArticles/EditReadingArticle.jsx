@@ -30,11 +30,15 @@ export default function EditReadingArticle() {
     };
 
     try {
-      const res = await fetch("/api/updatereadingarticle", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(articleData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/updatereadingarticle`,
+        {
+          credentials: "include",
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(articleData),
+        }
+      );
       if (res.ok) {
         console.log("Article updated successfully");
         setArticleTitle("");
