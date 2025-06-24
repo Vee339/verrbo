@@ -8,7 +8,12 @@ export default function ProtectedRoute({ children }) {
   useEffect(() => {
     async function checkSession() {
       try {
-        const res = await fetch("/api/user/session");
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/user/session`,
+          {
+            credentials: "include",
+          }
+        );
         const data = await res.json();
 
         if (data.loggedIn && data.role === "admin") {
