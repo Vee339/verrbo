@@ -17,11 +17,15 @@ export default function Register() {
     const userDetails = { username, email, password, role };
 
     try {
-      const res = await fetch("/api/user/add", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userDetails),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/user/add`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userDetails),
+        }
+      );
 
       const data = await res.json();
 

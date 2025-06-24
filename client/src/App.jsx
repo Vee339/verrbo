@@ -20,7 +20,7 @@ import "./App.css";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/verrbo">
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="" element={<Home />} />

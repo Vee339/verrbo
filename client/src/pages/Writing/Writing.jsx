@@ -11,7 +11,12 @@ export default function Writing() {
 
   async function fetchTopic() {
     try {
-      const response = await fetch("/api/writingtopic");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/writingtopic`,
+        {
+          credentials: "include",
+        }
+      );
       if (!response.ok) {
         throw new Error(`HTTP Error! status: ${response.status}`);
       }

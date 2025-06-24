@@ -7,7 +7,12 @@ export default function Stories() {
   useEffect(() => {
     async function fetchStories() {
       try {
-        const res = await fetch("/api/shortstories");
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/shortstories`,
+          {
+            credentials: "include",
+          }
+        );
         if (!res.ok) {
           throw new Error(`HTTP Error! status: ${res.status}`);
         }
@@ -40,7 +45,7 @@ export default function Stories() {
                 <p className={styles.storyTitle}>{story.title}</p>
                 <img
                   className={styles.storyImage}
-                  src={`/images/stories/${story.image_filename}`}
+                  src={`/verrbo/images/stories/${story.image_filename}`}
                 />
               </Link>
             </li>

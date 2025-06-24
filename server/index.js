@@ -2,8 +2,14 @@ const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
 const sessions = require("express-session");
+const cors = require("cors");
 
 dotenv.config();
+
+const allowedOrigins = [
+  "https://veerpalkaur.com",
+  "http://localhost:5173", // for local dev
+];
 
 const usersRouter = require("./modules/users/router");
 const videosRouter = require("./modules/listening_videos/router");
@@ -21,11 +27,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true, // if you're using cookies/sessions
+  })
+);
+
+app.use(
   sessions({
     secret: process.env.SESSIONSECRET,
     name: "verrboSessionId",
     saveUninitialized: false,
     resave: false,
+    cookie: {
+      secure: true,
+      sameSite: "none",
+    },
   })
 );
 

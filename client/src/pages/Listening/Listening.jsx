@@ -12,7 +12,12 @@ export default function Listening() {
     async function retrieveVideos() {
       try {
         // fetch all the videoIDs from the Database
-        const response = await fetch("/api/listeningvideos");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/listeningvideos`,
+          {
+            credentials: "include",
+          }
+        );
         if (!response.ok) {
           throw new Error(`HTTP Error! status: ${response.status}`);
         }

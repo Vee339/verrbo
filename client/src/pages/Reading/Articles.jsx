@@ -7,7 +7,12 @@ export default function Articles() {
   useEffect(() => {
     async function fetchArticles() {
       try {
-        const res = await fetch("/api/readingarticles");
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/readingarticles`,
+          {
+            credentials: "include",
+          }
+        );
         if (!res.ok) {
           throw new Error(`HTTP Error! status: ${res.status}`);
         }

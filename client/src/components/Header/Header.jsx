@@ -9,7 +9,12 @@ export default function Header() {
   useEffect(() => {
     async function checkSession() {
       try {
-        const res = await fetch("/api/user/session");
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/user/session`,
+          {
+            credentials: "include",
+          }
+        );
         const data = await res.json();
 
         if (data.loggedIn) {
@@ -27,7 +32,7 @@ export default function Header() {
     <header>
       <h2 className={styles.logo}>
         <a href="">
-          <img src="/verrbo2.svg" alt="" />
+          <img src="/verrbo/verrbo2.svg" alt="" />
         </a>
       </h2>
       <nav>
