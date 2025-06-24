@@ -6,7 +6,11 @@ export default function Header() {
     <header>
       <h2>
         <a href="">
-          <img src="/verrbo2.svg" alt="" className={styles.logoImage} />
+          <img
+            src="/verrbo/admin/verrbo2.svg"
+            alt=""
+            className={styles.logoImage}
+          />
         </a>
       </h2>
       <nav className={styles.mainNav}>
