@@ -2,7 +2,7 @@ import styles from "./listening.module.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const apiKey = `AIzaSyBGMQBzySjWxCOzdtVLmE6b6Lv_EogFwnE`;
+const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
 
 export default function Listening() {
   const [retrievedVideos, setRetrievedVideos] = useState([]);

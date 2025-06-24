@@ -14,10 +14,12 @@
   background: var(--secondary-color);
 }
 body {
+  /* overflow-x: hidden; */
   font-family: "Radio Canada", sans-serif;
 }
 #root {
   max-width: 1280px;
+
   margin: 0 auto;
   padding: 0;
 }

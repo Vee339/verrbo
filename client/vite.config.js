@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:8888", // backend server
+        target: "https://verrbo-api.onrender.com/", // backend server
         changeOrigin: true,
         secure: false,
       },
