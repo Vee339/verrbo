@@ -2,8 +2,12 @@ import MainLayout from "./MainLayout";
 import Login from "./pages/Login/Login";
 import Logout from "./pages/Logout/Logout";
 import Register from "./pages/Register/Register";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home/Home";
 import Writing from "./pages/Writing/Writing";
+import WritingTopic from "./pages/Writing/WritingTopic";
+import Journaling from "./pages/Writing/Journaling";
+import WritingDone from "./pages/Writing/WritingDone";
 import Listening from "./pages/Listening/Listening";
 import Reading from "./pages/Reading/Reading";
 import Practice from "./pages/Listening/Practice";
@@ -25,6 +29,25 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="" element={<Home />} />
             <Route path="writing" element={<Writing />} />
+            <Route
+              path="writing/topic"
+              element={
+                <ProtectedRoute>
+                  <WritingTopic />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="writing/journaling"
+              element={
+                <ProtectedRoute>
+                  <Journaling />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route path="writing/done" element={<WritingDone />} />
+
             <Route path="listening" element={<Listening />} />
             <Route path="listening/practice" element={<Practice />} />
             <Route

@@ -16,7 +16,7 @@ export default function ProtectedRoute({ children }) {
         );
         const data = await res.json();
 
-        if (data.loggedIn && data.role === "admin") {
+        if (data.loggedIn) {
           setIsAuthorized(true);
         } else {
           setIsAuthorized(false);
@@ -35,8 +35,7 @@ export default function ProtectedRoute({ children }) {
   }
 
   if (!isAuthorized) {
-    return <Navigate to="/admin/login" />;
-    // return <Navigate to="/login" />;
+    return <Navigate to="/user/login" />;
   }
 
   return children;

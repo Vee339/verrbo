@@ -32,7 +32,7 @@ export default function LoginAdmin() {
         setError("");
         setUsername("");
         setPassword("");
-        navigate("/");
+        navigate("/", { replace: true });
       } else {
         throw new Error(data.message || "Failed to login");
       }

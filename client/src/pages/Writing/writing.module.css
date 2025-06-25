@@ -1,3 +1,28 @@
+/* Styles for reading homepage */
+.writingOptions {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  justify-content: space-between;
+  row-gap: 2rem;
+  margin-top: 2.5rem;
+}
+.writingOption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  width: 45%;
+  height: 70px;
+  border-radius: 15px;
+  background: var(--accent-color);
+  font-size: 1.3rem;
+  transition: all 0.3s;
+}
+.writingOption:hover {
+  background: #86aca5;
+}
 form {
   margin: 1rem 0;
 }

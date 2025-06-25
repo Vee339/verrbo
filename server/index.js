@@ -2,14 +2,10 @@ const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
 const sessions = require("express-session");
+const MongoStore = require("connect-mongo");
 const cors = require("cors");
 
 dotenv.config();
-
-const allowedOrigins = [
-  "https://veerpalkaur.com",
-  "http://localhost:5173", // for local dev
-];
 
 const usersRouter = require("./modules/users/router");
 const videosRouter = require("./modules/listening_videos/router");
@@ -17,8 +13,8 @@ const writingRouter = require("./modules/writing_topics/router");
 const speakingRouter = require("./modules/speaking_topics/router");
 const readingRouter = require("./modules/reading_articles/router");
 const storiesRouter = require("./modules/short_stories/router");
-
-const userWritingsDb = require("./modules/user_writings/db");
+const journalRouter = require("./modules/journal_entries/router");
+const writingsRouter = require("./modules/user_writings/router");
 
 const app = express();
 const port = process.env.PORT || "8888";
@@ -27,24 +23,41 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true, // if you're using cookies/sessions
-  })
-);
-
-app.use(
   sessions({
     secret: process.env.SESSIONSECRET,
     name: "verrboSessionId",
     saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.DBHOST }),
     resave: false,
     cookie: {
-      secure: true,
-      sameSite: "none",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "None",
+      httpOnly: true,
     },
   })
 );
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      const allowed = [
+        "https://veerpalkaur.com",
+        "https://www.veerpalkaur.com",
+        "https://veerpalkaur.com/verrbo",
+        "https://www.veerpalkaur.com/verrbo",
+        "http://localhost:5173",
+      ];
+      if (!origin || allowed.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
+app.set("trust proxy", 1);
 
 app.use("/", videosRouter);
 app.use("/", writingRouter);
@@ -52,24 +65,11 @@ app.use("/", speakingRouter);
 app.use("/", readingRouter);
 app.use("/", storiesRouter);
 app.use("/", usersRouter);
+app.use("/", journalRouter);
+app.use("/", writingsRouter);
 
 app.get("/", async (req, res) => {
   res.send("This is the test command.");
-});
-
-app.post("/api/adduserwriting", async (req, res) => {
-  const userId = "68463d32a52beee297cb0ce2";
-  const topicId = req.body.topic_id;
-  const content = req.body.writing_content;
-  const submitted_at = new Date();
-  const feedback = "Need some improvement in Grammar";
-  await userWritingsDb.addUserWriting(
-    userId,
-    topicId,
-    content,
-    submitted_at,
-    feedback
-  );
 });
 
 app.listen(port, () => {
